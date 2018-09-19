@@ -120,7 +120,7 @@ author:
       # url: "https://facebook.com/sudhirln92"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-       url: "https://github.com/sudhirln92"
+       #url: "https://github.com/sudhirln92"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       # url: "https://instagram.com/"
