@@ -1,9 +1,4 @@
 ---
-permalink: /blogs/
-title: "Blog post"
-header:
-  image: "/images/machine_page.jpg"
-
 title: "Blog post"
 date: 2018-01-28
 tags: [machine learning, data science, neural network]
