@@ -261,3 +261,11 @@ defaults:
     values:
       layout: single
       author_profile: true
+  # _blogs
+  - scope:
+      path: ""
+      type: _blogs
+    values:
+      layout: single
+      author_profile: true
+      
