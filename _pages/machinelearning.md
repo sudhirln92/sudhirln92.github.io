@@ -2,7 +2,7 @@
 layout:archive
 permalink: /machine-learning/
 title: 'Machine learning Posts by Tags' 
-author_profile: True
+author_profile: true
 header: 
 	image: "/images/header.jpg"
 ---
