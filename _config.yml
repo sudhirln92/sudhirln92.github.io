@@ -85,7 +85,7 @@ analytics:
 # Site Author
 author:
   name             : "Sudhir Kumar"
-  avatar           : "/image/SK.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : "/images/SK.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Data Science Porfolio"
   location         : "Bengaluru"
   email            : "sudhirln92@gmail.com"
