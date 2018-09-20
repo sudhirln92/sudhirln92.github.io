@@ -86,30 +86,30 @@ analytics:
 author:
   name             : "Sudhir Kumar"
   avatar           : "/images/SK.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Data Science Porfolio"
+  bio              : "Data Science Portfolio"
   location         : "Bengaluru"
-  email            : "sudhirln92@gmail.com"
+  email            :
   uri              :
   home             : # null (default), "absolute or relative url to link to author home"
   bitbucket        :
   codepen          :
   dribbble         :
   flickr           :
-  facebook         : #"sudhirln92"
+  facebook         :
   foursquare       :
-  github           : "sudhirln92"
+  github           : "sudhirl92"
   gitlab           :
   google_plus      :
   keybase          :
   instagram        :
   lastfm           :
-  linkedin         : "sudhirln92" # "john-doe-12345678" (the last part of your profile url, e.g. https://www.linkedin.com/in/john-doe-12345678)
+  linkedin         : "sudhirl92" # "john-doe-12345678" (the last part of your profile url, e.g. https://www.linkedin.com/in/john-doe-12345678)
   pinterest        :
   soundcloud       :
   stackoverflow    : # "123456/username" (the last part of your profile url, e.g. https://stackoverflow.com/users/123456/username)
   steam            : # "steamId" (the last part of your profile url, e.g. https://steamcommunity.com/id/steamId/)
   tumblr           :
-  twitter          : "sudhirln92"
+  twitter          :
   vine             :
   weibo            :
   xing             :
@@ -253,10 +253,11 @@ defaults:
       comments: # true
       share: true
       related: true
+
   # _pages
   - scope:
       path: ""
-      type: pages 
+      type: pages
     values:
       layout: single
       author_profile: true
