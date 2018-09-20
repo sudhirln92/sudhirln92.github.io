@@ -264,7 +264,7 @@ defaults:
   # _blogs
   - scope:
       path: ""
-      type: _blogs
+      type: blogs
     values:
       layout: single
       author_profile: true
