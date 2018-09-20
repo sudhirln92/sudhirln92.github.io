@@ -262,15 +262,3 @@ defaults:
       layout: single
       author_profile: true
   
-  # _blogs
-  - scope:
-      path: ""
-      type: blogs
-    values:
-      layout: single
-      author_profile: true
-      read_time: true
-      comments: # true
-      share: true
-      related: true
-
