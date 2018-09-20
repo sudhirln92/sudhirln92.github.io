@@ -1,8 +1,10 @@
 ---
-layout: blogs
+title: "Blogs"
 permalink: /blogs/
-title: "Machine Learning Blog Posts by Tags"
-author_profile: true
 header:
-  image: "/images/machine_page.jpg"
+  image: "/images/header.jpg"
 ---
+
+I'm a senior data scientist who excels at machine learning, exploratory analysis, and data visualizations.
+
+Etc, etc, etc
