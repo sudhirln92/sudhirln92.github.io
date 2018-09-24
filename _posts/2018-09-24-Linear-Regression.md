@@ -1,10 +1,10 @@
 ---
-title: "Linear regression"
+title: "Linear Regression"
 date: 2018-09-24
-tags: [machine learning, data science, Linear Regression]
+tags: [Machine Learning, Data Science, Linear Regression, Normal Equation, Cost Function]
 header:
-  image: "/images/perceptron/header.jpg"
-excerpt: "Machine Learning, Linear Regression, Data Science"
+  image: "/images/Linear_Regression/output_7_0.png"
+excerpt: "Machine Learning, Linear Regression, Data Science, Normal Equation, Cost Function"
 mathjax: "true"
 ---
 
@@ -48,7 +48,9 @@ $\theta_0,\theta_1$ are parameter of hypothesis.This is equation for **Simple / 
 For **Multiple Linear regression** more than one independent variable exit then we will use $x_{ij}$ to denote indepedent variable and $y_{i}$ to denote dependent variable. We have $n$ independent variable then $j=1,2,3 ..... n$. The hypothesis function represented as
 
 $$h_\theta(x_{i}) = \theta_0 + \theta_1x_{i1} + \theta_2 x_{i2} + ..... \theta_j x_{ij} ...... \theta_n  x_{mn}$$
-$\theta_0,\theta_1,....\theta_j....\theta_n$ are parameter of hypothesis,
+$$\theta_0,\theta_1,....\theta_j....\theta_n$$ 
+
+are parameter of hypothesis,
 $m$ Number of training exaples,
 $n$ Number of independent variable,
 $x_{ij}$ is $i^{th}$ training exaple of $j^{th}$ feature.
