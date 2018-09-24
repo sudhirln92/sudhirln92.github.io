@@ -1,6 +1,6 @@
 ---
 title: "Linear regression"
-date: 2018-09-28
+date: 2018-09-24
 tags: [machine learning, data science, Linear Regression]
 header:
   image: "/images/perceptron/header.jpg"
