@@ -2,8 +2,6 @@
 title: "Linear Regression"
 date: 2018-09-24
 tags: [Machine Learning, Data Science, Linear Regression, Normal Equation, Cost Function]
-header:
-  image: ""
 excerpt: "Machine Learning, Linear Regression, Data Science, Normal Equation, Cost Function"
 mathjax: "true"
 ---
