@@ -2,7 +2,7 @@
 title: "Blogs"
 permalink: /blogs/
 header:
-  image: "/images/header.jpg"
+  image: "/images/blogs.jpg"
 ---
 
 Hello sir,
