@@ -260,5 +260,10 @@ defaults:
       type: pages
     values:
       layout: single
-      author_profile: true
+      classes: wide
+      author_profile: false
+      share: true
+      toc: true
+      sidebar:
+        nav: "posts"
   
