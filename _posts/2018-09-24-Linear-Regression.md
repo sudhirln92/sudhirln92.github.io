@@ -3,12 +3,10 @@ title: "Linear Regression"
 date: 2018-09-24
 tags: [Machine Learning, Data Science, Linear Regression, Normal Equation, Cost Function]
 header:
-  image: "/images/Linear_Regression/output_7_0.png"
+  image: ""
 excerpt: "Machine Learning, Linear Regression, Data Science, Normal Equation, Cost Function"
 mathjax: "true"
 ---
-
-
 
 # Medical cost personal data
 
