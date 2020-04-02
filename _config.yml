@@ -74,23 +74,6 @@ social:
   name                   : # If the user or organization name differs from the site's name
   links                  : # An array of links to social media profiles
 
-footer:
-  links:
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/sudhirln92"
-    - label: "Facebook"
-      icon: "fab fa-fw fa-facebook-square"
-      url: "https://facebook.com/sudhirln92"
-    - label: "LinkedIn"
-      icon: "fab fa-fw fa-linkedin"
-      url: "https://www.linkedin.com/in/sudhirln92"
-    - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
-      url: "https://instagram.com/sudhirln92"
-    - label: "GitHub"
-      icon: "fab fa-fw fa-github"
-      url: "https://github.com/sudhirln92"
 
 # Analytics
 analytics:
@@ -257,13 +240,6 @@ compress_html:
   ignore:
     envs: development
 
-
-# Collections
-collections:
-  blogs:
-    output: true
-    permalink: /:collection/:path/
-  
 
 # Defaults
 defaults:
