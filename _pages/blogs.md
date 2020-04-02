@@ -1,5 +1,5 @@
 ---
-layout: blogs
+layout: posts
 title: "Blogs"
 permalink: /blogs/
 classes: wide
