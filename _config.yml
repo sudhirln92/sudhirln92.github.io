@@ -114,13 +114,7 @@ author:
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
       url: "https://twitter.com/sudhirln92"
-    - label: "Facebook"
-      icon: "fab fa-fw fa-facebook-square"
-      url: "https://facebook.com/sudhirln92"
-    - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
-      url: "https://instagram.com/sudhirln92"
-
+    
 # Site Footer
 footer:
   links:
@@ -130,16 +124,13 @@ footer:
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/sudhirln92"
+    - label: "Kaggle"
+      icon: "fab fa-fw fa-kaggle"
+      url: "https://kaggle.com/sudhirnl7"
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
       url: "https://twitter.com/sudhirln92"
-    - label: "Facebook"
-      icon: "fab fa-fw fa-facebook-square"
-      url: "https://facebook.com/sudhirln92"
-    - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
-      url: "https://instagram.com/sudhirln92"
-
+    
 
 # Reading Files
 include:

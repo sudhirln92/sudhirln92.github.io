@@ -4,6 +4,7 @@ date: 2018-09-24
 tags: [Machine Learning, Data Science, Linear Regression, Normal Equation, Cost Function]
 excerpt: "Machine Learning, Linear Regression, Data Science, Normal Equation, Cost Function"
 mathjax: "true"
+classes: wide
 ---
 
 # Medical cost personal data
