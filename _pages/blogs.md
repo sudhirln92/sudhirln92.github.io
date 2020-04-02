@@ -1,6 +1,6 @@
 ---
-layout: posts
+layout: blogs
+title: "Blogs"
 permalink: /blogs/
-title: "Blog"
 classes: wide
 ---
