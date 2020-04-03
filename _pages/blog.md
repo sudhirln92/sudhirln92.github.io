@@ -1,5 +1,6 @@
 ---
-layout: archive
-title: "Blog"
+layout: collection
+collection: blog
 permalink: /blog/
+title: "Blog Posts"
 ---
