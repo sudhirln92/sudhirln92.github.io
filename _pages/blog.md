@@ -1,7 +1,11 @@
 ---
-layout: collection
-collection: blog
+layout: archive
+title: "Blog"
 permalink: /blog/
-title: "Blog Posts"
+author_profile: false
 classes: wide
 ---
+
+{% for post in site.blog %}
+{% include archive-single.html %}
+{% endfor %}
