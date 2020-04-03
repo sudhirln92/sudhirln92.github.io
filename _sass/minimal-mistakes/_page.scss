@@ -217,6 +217,7 @@ body {
 .page__hero-image {
   width: 100%;
   height: auto;
+  max-height: 300px;
   -ms-interpolation-mode: bicubic;
 }
 
