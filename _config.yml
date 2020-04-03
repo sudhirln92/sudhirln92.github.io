@@ -259,7 +259,7 @@ compress_html:
 
 # Collections
 collections:
-  blogs:
+  blog:
     output: true
     permalink: /:collection/:path/
 
@@ -287,8 +287,8 @@ defaults:
   
   # _blogs
   - scope:
-      path: "_blogs"
-      type: blogs
+      path: "_blog"
+      type: blog
     values:
       layout: single
       author_profile: true

@@ -1,8 +1,7 @@
 ---
 layout: collection
-collection: blogs
-permalink: /blogs/
+collection: blog
+permalink: /blog/
 title: "Blog Posts"
 classes: wide
-mathjax: true
 ---
