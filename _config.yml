@@ -276,6 +276,7 @@ defaults:
       comments: true
       share: true
       related: true
+      mathjax: true
   
   # _pages
   - scope:
@@ -284,6 +285,7 @@ defaults:
     values:
       layout: single
       author_profile: true
+      mathjax: true
   
   # _blogs
   - scope:
@@ -296,4 +298,5 @@ defaults:
       comments: true
       share: true
       related: true
+      mathjax: true
   
