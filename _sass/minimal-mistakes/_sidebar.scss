@@ -75,10 +75,10 @@
   margin-bottom: 1em;
 
   @include breakpoint($large) {
-    position: relative;
+    position: absolute;
     top: 0;
-    left: 0;
-    width: $right-sidebar-width-narrow;
+    left: auto;
+    width: 200px;
     margin-left: -1 * $right-sidebar-width-narrow;
     padding-right: 1em;
     z-index: 10;
