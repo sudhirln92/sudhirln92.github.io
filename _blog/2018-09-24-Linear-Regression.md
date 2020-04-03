@@ -31,11 +31,11 @@ In this notebook we will build Linear regression model for Medical cost dataset.
 ## Definition & Working principle
 Let's build model using **Linear regression**.
 
-Linear regression is a **supervised learining** algorithm used when target / dependent variable  **continues** real number. It establishes relationship between dependent variable $y$ and one or more independent variable $$x$$ using best fit line.   It work on the principle of ordinary least square $$(OLS)$$ / Mean square errror $(MSE)$. In statistics ols is method to estimated unkown parameter of linear regression function, it's goal is to minimize sum of square difference between observed dependent variable in the given data set and those predicted by linear regression fuction. 
+Linear regression is a **supervised learining** algorithm used when target / dependent variable  **continues** real number. It establishes relationship between dependent variable $y$ and one or more independent variable $x$ using best fit line.   It work on the principle of ordinary least square $(OLS)$ / Mean square errror $(MSE)$. In statistics ols is method to estimated unkown parameter of linear regression function, it's goal is to minimize sum of square difference between observed dependent variable in the given data set and those predicted by linear regression fuction.
 
 ## Hypothesis representation
 
-We will use $$x_i$$ to denote the independent variable and $y_i$ to denote dependent variable. A pair of $$(x_i,y_i)$$ is called training example. The subscripe $i$ in the notation is simply index into the training set. We have $m$ training example then $i = 1,2,3,...m$. 
+We will use $x_i$ to denote the independent variable and $y_i$ to denote dependent variable. A pair of $(x_i,y_i)$ is called training example. The subscripe $i$ in the notation is simply index into the training set. We have $m$ training example then $i = 1,2,3,...m$. 
 
 The goal of supervised learning is to learn a *hypothesis function $h$*, for a given training set that can used to estimate $y$ based on $x$. So hypothesis fuction represented as 
 
