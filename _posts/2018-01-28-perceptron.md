@@ -3,6 +3,7 @@ title: "Machine Learning Project: Perceptron"
 date: 2018-01-28
 classes: wide
 mathjax: true
+comments: true 
 tags: [machine learning, data science, neural network]
 header:
   image: "/images/perceptron/percept.jpg"
