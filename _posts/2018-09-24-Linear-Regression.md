@@ -6,7 +6,7 @@ tags: [Machine Learning, Data Science, Linear Regression, Normal Equation, Cost 
 excerpt: "Machine Learning, Linear Regression, Data Science, Normal Equation, Cost Function"
 ---
 
-{% include '_posts/Linear_regression1.html'%}
+{% include '_posts/Linear_regression1.html' %}
 # Medical cost personal data
 
 In this notebook we will build Linear regression model for Medical cost dataset.
