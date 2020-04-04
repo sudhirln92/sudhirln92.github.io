@@ -6,55 +6,33 @@ tags: [Machine Learning, Data Science, Linear Regression, Normal Equation, Cost 
 excerpt: "Machine Learning, Linear Regression, Data Science, Normal Equation, Cost Function"
 ---
 
-{% include '_posts/Linear_regression1.html' %}
-# Medical cost personal data
+We will build a Linear regression model for Medical cost dataset. The dataset consists of age, sex, BMI(body mass index), children, smoker and region feature, which are independent and charge as a dependent feature. We will predict individual medical costs billed by health insurance.
 
-In this notebook we will build Linear regression model for Medical cost dataset.
-
-**Steps**
-1. [Definition & Working principle](#Definition-&-Working-principle)
-2. [Hypothesis representation](#Hypothesis-representation)
-3. [Import Librarys and Dataset](#Import-Librarys-and-Dataset)
-4. [Cost function](#Cost-function)
-5. [Normal Equation](#Normal-Equation)
-6. [Exploratory data analysis](#Exploratory-data-analysis)
-7. [Data Preprocessing](#Data-Preprocessing)
-8. [Box -Cox transformation](#Box--Cox-transformation)
-9. [Polynomial feature](#Polynomial-feature)
-10. [Train Test split](#Train-Test-split)
-11. [Model building](#Model-building)
-12. [Model evaluation](#Model-evaluation)
-13. [Backward elimination](#Backward-elimination) 
-14. [Model Validation](#Model-Validation)
-15. [Summary](#Summary)
-
-## Definition & Working principle
+# Definition & Working principle
 Let's build model using **Linear regression**.
 
-Linear regression is a **supervised learining** algorithm used when target / dependent variable  **continues** real number. It establishes relationship between dependent variable $y$ and one or more independent variable $x$ using best fit line.   It work on the principle of ordinary least square $(OLS)$ / Mean square errror $(MSE)$. In statistics ols is method to estimated unkown parameter of linear regression function, it's goal is to minimize sum of square difference between observed dependent variable in the given data set and those predicted by linear regression fuction.
+Linear regression is a **supervised learining** algorithm used when target / dependent variable  **continues** real number. It establishes relationship between dependent variable $y$ and one or more independent variable $x$ using best fit line.   It work on the principle of ordinary least square $(OLS)$ / Mean square errror $(MSE)$. In statistics ols is method to estimated unkown parameter of linear regression function, it's goal is to minimize sum of square difference between observed dependent variable in the given data set and those predicted by linear regression fuction. 
 
 ## Hypothesis representation
 
-We will use $x_i$ to denote the independent variable and $y_i$ to denote dependent variable. A pair of $(x_i,y_i)$ is called training example. The subscripe $i$ in the notation is simply index into the training set. We have $m$ training example then $i = 1,2,3,...m$. 
+We will use $\mathbf{x_i}$ to denote the independent variable and $\mathbf{y_i}$ to denote dependent variable. A pair of $\mathbf{(x_i,y_i)}$ is called training example. The subscripe $\mathbf{i}$ in the notation is simply index into the training set. We have $\mathbf{m}$ training example then $\mathbf{i = 1,2,3,...m}$.
 
-The goal of supervised learning is to learn a *hypothesis function $h$*, for a given training set that can used to estimate $y$ based on $x$. So hypothesis fuction represented as 
+The goal of supervised learning is to learn a *hypothesis function $\mathbf{h}$*, for a given training set that can used to estimate $\mathbf{y}$ based on $\mathbf{x}$. So hypothesis fuction represented as 
 
-$$h_\theta(x_{i}) = \theta_0 + \theta_1x_i$$   
-$\theta_0,\theta_1$ are parameter of hypothesis.This is equation for **Simple / Univariate Linear regression**. 
+$$\mathbf{ h_\theta(x_{i}) = \theta_0 + \theta_1x_i }$$   
+$\mathbf{\theta_0,\theta_1}$ are parameter of hypothesis.This is equation for **Simple / Univariate Linear regression**. 
 
-For **Multiple Linear regression** more than one independent variable exit then we will use $x_{ij}$ to denote indepedent variable and $y_{i}$ to denote dependent variable. We have $n$ independent variable then $j=1,2,3 ..... n$. The hypothesis function represented as
+For **Multiple Linear regression** more than one independent variable exit then we will use $\mathbf{x_{ij}}$ to denote indepedent variable and $\mathbf{y_{i}}$ to denote dependent variable. We have $\mathbf{n}$ independent variable then $\mathbf{j=1,2,3 ..... n}$. The hypothesis function represented as
 
-$$h_\theta(x_{i}) = \theta_0 + \theta_1x_{i1} + \theta_2 x_{i2} + ..... \theta_j x_{ij} ...... \theta_n  x_{mn}$$
-$$\theta_0,\theta_1,....\theta_j....\theta_n$$ 
-
-are parameter of hypothesis,
-$m$ Number of training exaples,
-$n$ Number of independent variable,
-$x_{ij}$ is $i^{th}$ training exaple of $j^{th}$ feature.
+$$\mathbf{h_\theta(x_{i}) = \theta_0 + \theta_1x_{i1} + \theta_2 x_{i2} + ..... \theta_j x_{ij} ...... \theta_n  x_{mn} }$$
+$\mathbf{\theta_0,\theta_1,....\theta_j....\theta_n }$ are parameter of hypothesis,
+$\mathbf{m}$ Number of training exaples,
+$\mathbf{n}$ Number of independent variable,
+$\mathbf{x_{ij}}$ is $\mathbf{i^{th}}$ training exaple of $\mathbf{j^{th}}$ feature.
 
 
-## Import Librarys and Dataset
->Now we will import couple of python library required for our analysis and import dataset 
+## Import Library and Dataset
+Now we will import couple of python library required for our analysis and import dataset 
 
 
 ```python
@@ -65,7 +43,8 @@ import matplotlib.pyplot as plt # Visualization
 import seaborn as sns #Visualization
 plt.rcParams['figure.figsize'] = [8,5]
 plt.rcParams['font.size'] =14
-#plt.rcParams.keys()
+plt.rcParams['font.weight']= 'bold'
+plt.style.use('seaborn-whitegrid')
 ```
 
 
@@ -173,23 +152,25 @@ df.head()
 
 
 
-Now we have import dataset. When we look at the shape of dataset it has return as (1338,7).So there are $m=1338$ training exaple and $n=7$ independent variable. The target variable here is charges and remaining six variables such as age, sex, bmi, children, smoker, region are independent variable. There are multiple independent variable, so we need to fit Multiple linear regression. Then the hypothesis function looks like
+Now we have import dataset. When we look at the shape of dataset it has return as (1338,7).So there are $\mathbf{m=1338}$ training exaple and $\mathbf{n=7}$ independent variable. The target variable here is charges and remaining six variables such as age, sex, bmi, children, smoker, region are independent variable. There are multiple independent variable, so we need to fit Multiple linear regression. Then the hypothesis function looks like
 
-$$h_\theta(x_{i}) = \theta_0+\theta_1 age + \theta_2 sex + \theta_3 bmi + \theta_4 children + \theta_5 smoker +
-\theta_6 region$$  
+$$\mathbf{ h_\theta(x_{i}) = \theta_0+\theta_1 age + \theta_2 sex + \theta_3 bmi + \theta_4 children + \theta_5 smoker + \theta_6 region }$$
+
 This multiple linear regression equation for given dataset.  
-If $i=1$ then $h_\theta(x_{1}) = \theta_0+\theta_1 19 + \theta_2 female + \theta_3 27.900 + \theta_4 1 + \theta_5 yes + \theta_6 southwest$ & $y_1 = 16884.92400$  
-If $i=3$ then $h_\theta(x_{3}) = \theta_0+\theta_1 28 + \theta_2 male + \theta_3 33.000 + \theta_4 3 + \theta_5 no + \theta_6 northwest$ & $y_3 = 4449.46200$  
+If $\mathbf{i=1}$ then 
+$$\mathbf{h_\theta(x_{1}) = \theta_0+\theta_1 19 + \theta_2 female + \theta_3 27.900 + \theta_4 1 + \theta_5 yes + \theta_6 southwest}$$ 
+$$\mathbf{y_1 = 16884.92400}$$
+If $\mathbf{i=3}$ then $$\mathbf{h_\theta(x_{3}) = \theta_0+\theta_1 28 + \theta_2 male + \theta_3 33.000 + \theta_4 3 + \theta_5 no + \theta_6 northwest}$$ 
+$$\mathbf{y_3 = 4449.46200}$$
 *Note*: In python index starts from 0.
-$x_1 = \left(\begin{matrix} x_{11} & x_{12} & x_{13} & x_{14} & x_{15} & x_{16}\end{matrix}\right) 
-    = \left(\begin{matrix} 19 & female & 27.900 & 1 & no & northwest\end{matrix}\right) $    
+$$\mathbf{x_1 = \left(\begin{matrix} x_{11} & x_{12} & x_{13} & x_{14} & x_{15} & x_{16}\end{matrix}\right) = \left(\begin{matrix} 19 & female & 27.900 & 1 & no & northwest\end{matrix}\right) }$$
 
 ## Matrix Formulation
 
-In general we can write above vector as $x_{ij} = \left( \begin{smallmatrix}  x_{i1} & x_{i2} &.&.&.& x_{in} \end{smallmatrix} \right)$
+In general we can write above vector as $$ \mathbf{ x_{ij}} = \left( \begin{smallmatrix} \mathbf{x_{i1}} & \mathbf{x_{i2}} &.&.&.& \mathbf{x_{in}} \end{smallmatrix} \right)$$
 
-Now we combine all aviable individual vector into single input matrix of size $(m,n)$ and denoted it by $X$ input matrix, which consist of all training exaples,
-$$X = \left( \begin{smallmatrix} x_{11} & x_{12} &.&.&.&.& x_{1n}\\
+Now we combine all aviable individual vector into single input matrix of size $(m,n)$ and denoted it by $\mathbf{X}$ input matrix, which consist of all training exaples,
+$$\mathbf{X} = \left( \begin{smallmatrix} x_{11} & x_{12} &.&.&.&.& x_{1n}\\
                                 x_{21} & x_{22} &.&.&.&.& x_{2n}\\
                                 x_{31} & x_{32} &.&.&.&.& x_{3n}\\
                                 .&.&.&. &.&.&.& \\
@@ -197,25 +178,26 @@ $$X = \left( \begin{smallmatrix} x_{11} & x_{12} &.&.&.&.& x_{1n}\\
                                 x_{m1} & x_{m2} &.&.&.&.&. x_{mn}\\
                                 \end{smallmatrix} \right)_{(m,n)}$$
 
-We represent parameter of function and dependent variable in vector form as  
+We represent parameter of function and dependent variable in vactor form as  
 $$\theta = \left (\begin{matrix} \theta_0 \\ \theta_1 \\ .\\.\\ \theta_j\\.\\.\\ \theta_n \end {matrix}\right)_{(n+1,1)} 
-y = \left (\begin{matrix} y_1\\ y_2\\. \\. \\ y_i \\. \\. \\ y_m \end{matrix} \right)_{(m,1)}$$
+\mathbf{ y } = \left (\begin{matrix} y_1\\ y_2\\. \\. \\ y_i \\. \\. \\ y_m \end{matrix} \right)_{(m,1)}$$
 
-So we represent hypothesis function in vectorize form $h_\theta{(x)} = X\theta$.
+So we represent hypothesis function in vectorize form $$\mathbf{ h_\theta{(x)} = X\theta}$$.
+
+
 
 
 ```python
 """ for our visualization purpose will fit line using seaborn library only for bmi as independent variable 
 and charges as dependent variable"""
 
-sns.regplot(x='bmi',y='charges',data=df,marker='^',color='purple')
+sns.lmplot(x='bmi',y='charges',data=df,aspect=2,height=6)
 plt.xlabel('Boby Mass Index$(kg/m^2)$: as Independent variable')
 plt.ylabel('Insurance Charges: as Dependent variable')
 plt.title('Charge Vs BMI');
 ```
 
-
-![png](output_7_0.png)
+![alt]({{ site.url }}{{ site.baseurl }}/images/linear-regression/output_7_0.png)
 
 
 In above plot we fit regression line into the variables.
@@ -225,49 +207,49 @@ In above plot we fit regression line into the variables.
   A cost function measures how much error in the model is in terms of ability to estimate the relationship between $x$ and $y$. 
   We can measure the accuracy of our hypothesis function by using a cost function. This takes an average difference of observed dependent variable in the given the dataset and those predicted by the hypothesis function.
   
-$$J(\theta) = \frac{1}{m} \sum_{i=1}^{m}(\hat{y}_i - y_i)^2$$
-$$J(\theta) =  \frac{1}{m} \sum_{i=1}^{m}(h_\theta(x_i) - y_i)^2$$
-To implement the linear regression, take training example add an extra column that is $x_0$ feature, where $x_0=1$. $x_{o} = \left( \begin{smallmatrix} x_{i0}+ x_{i1} & x_{i2} &.&.&.& x_{mi} \end{smallmatrix} \right)$,where $x_{i0} =0$ and input matrix will become as
+$$\mathbf{ J(\theta) = \frac{1}{m} \sum_{i=1}^{m}(\hat{y}_i - y_i)^2}$$
+$$\mathbf{J(\theta) =  \frac{1}{m} \sum_{i=1}^{m}(h_\theta(x_i) - y_i)^2}$$
+To implement the linear regression, take training example add an extra column that is $x_0$ feature, where $\mathbf{x_0=1}$. $\mathbf{x_{o}} = \left( \begin{smallmatrix} x_{i0} & x_{i1} & x_{i2} &.&.&.& x_{mi} \end{smallmatrix} \right)$,where $\mathbf{x_{i0} =0}$ and input matrix will become as
 
-$$X = \left( \begin{smallmatrix} x_{10} & x_{11} & x_{12} &.&.&.&.& x_{1n}\\
+$$\mathbf{X} = \left( \begin{smallmatrix} x_{10} & x_{11} & x_{12} &.&.&.&.& x_{1n}\\
                                 x_{20} & x_{21} & x_{22} &.&.&.&.& x_{2n}\\
                                 x_{30} & x_{31} & x_{32} &.&.&.&.& x_{3n}\\
                                  .&.&.&.&. &.&.&.& \\
                                  .&.&.&.&. &.&.&.& \\
                                 x_{m0} & x_{m1} & x_{m2} &.&.&.&.&. x_{mn}\\
                                 \end{smallmatrix} \right)_{(m,n+1)}$$  
-Each of the m input samples is similarly a column vector with n+1 rows $x_0$ being 1 for our convenience, that is $x_{10},x_{20},x_{30} .... x_{m0} =1$. Now we rewrite the ordinary least square cost function in matrix form as
-$$J(\theta) = \frac{1}{m} (X\theta - y)^T(X\theta - y)$$
+Each of the m input samples is similarly a column vector with n+1 rows $x_0$ being 1 for our convenience, that is $\mathbf{x_{10},x_{20},x_{30} .... x_{m0} =1}$. Now we rewrite the ordinary least square cost function in matrix form as
+$$\mathbf{J(\theta) = \frac{1}{m} (X\theta - y)^T(X\theta - y)}$$
 
-Let's look at the matrix multiplication concept,the multiplication of two matrix happens only if number of column of firt matrix is equal to number of row of second matrix. Here input matrix $X$ of size $(m,n+1)$, parameter of function is of size $(n+1,1)$ and dependent variable vector of size $(m,1)$. The product of matrix $X_{(m,n+1)}\theta_{(n+1,1)}$ will return a vector of size $(m,1)$, then product of $(X\theta - y)^T_{(1,m})(X\theta - y)_{(m,1)}$ will return size of unit vector. 
+Let's look at the matrix multiplication concept,the multiplication of two matrix happens only if number of column of firt matrix is equal to number of row of second matrix. Here input matrix $\mathbf{X}$ of size $\mathbf{(m,n+1)}$, parameter of function is of size $(n+1,1)$ and dependent variable vector of size $\mathbf{(m,1)}$. The product of matrix $\mathbf{X_{(m,n+1)}\theta_{(n+1,1)}}$ will return a vector of size $\mathbf{(m,1)}$, then product of $\mathbf{(X\theta - y)^T_{(1,m})(X\theta - y)_{(m,1)}}$ will return size of unit vector. 
 
 ## Normal Equation
-The normal equation is an analytical solution to the linear regression problem with a ordinary least square cost function. To minimize our cost function, take partial derivative of $J(\theta)$ with respect to $\theta$ and equate to $0$. The derivative of function is nothing but if a small change in input what would be the change in output of function.
- $$min_{\theta_0,\theta_1..\theta_n} J({\theta_0,\theta_1..\theta_n})$$
- $$\frac{\partial J(\theta_j)}{\partial\theta_j} =0$$ 
- where $j = 0,1,2,....n$
+The normal equation is an analytical solution to the linear regression problem with a ordinary least square cost function. To minimize our cost function, take partial derivative of $\mathbf{J(\theta)}$ with respect to $\theta$ and equate to $0$. The derivative of function is nothing but if a small change in input what would be the change in output of function.
+ $$\mathbf{min_{\theta_0,\theta_1..\theta_n} J({\theta_0,\theta_1..\theta_n})}$$
+ $$\mathbf{\frac{\partial J(\theta_j)}{\partial\theta_j} =0}$$ 
+ where $\mathbf{j = 0,1,2,....n}$
  
  Now we will apply partial derivative of our cost function,
- $$\frac{\partial J(\theta_j)}{\partial\theta_j} = \frac{\partial }{\partial \theta} \frac{1}{m}(X\theta - y)^T(X\theta - y) $$
- I will throw $\frac {1}{m}$ part away since we are going to compare a derivative to $0$. And solve $J(\theta),  
+ $$\mathbf{\frac{\partial J(\theta_j)}{\partial\theta_j} = \frac{\partial }{\partial \theta} \frac{1}{m}(X\theta - y)^T(X\theta - y) }$$
+ I will throw $\mathbf{\frac {1}{m}}$ part away since we are going to compare a derivative to $0$. And solve $\mathbf{J(\theta)}$,  
  
- $$J(\theta) = (X\theta -y)^T(X\theta - y)$$
- $$= (X\theta)^T - y^T)(X\theta -y)$$   
- $$= (\theta^T X^T - y^T)(X\theta - y)$$
- $$= \theta^T X^T X \theta - y^T X \theta - \theta^T X^T y + y^T y$$
- $$ = \theta^T X^T X \theta  - 2\theta^T X^T y + y^T y$$
+ $$\mathbf{J(\theta) = (X\theta -y)^T(X\theta - y)}$$
+ $$\mathbf{= (X\theta)^T - y^T)(X\theta -y)}$$   
+ $$\mathbf{= (\theta^T X^T - y^T)(X\theta - y)}$$
+ $$\mathbf{= \theta^T X^T X \theta - y^T X \theta - \theta^T X^T y + y^T y}$$
+ $$\mathbf{ = \theta^T X^T X \theta  - 2\theta^T X^T y + y^T y}$$
 
-Here $y^T_{(1,m)} X_{(m,n+1)} \theta_{(n+1,1)} = \theta^T_{(1,n+1)} X^T_{(n+1,m)} y_{(m,1)}$ because unit vector.
+Here $\mathbf{y^T_{(1,m)} X_{(m,n+1)} \theta_{(n+1,1)} = \theta^T_{(1,n+1)} X^T_{(n+1,m)} y_{(m,1)}}$ because unit vector.
 
-$$\frac{\partial J(\theta)}{\partial \theta} = \frac{\partial}{\partial \theta} (\theta^T X^T X \theta  - 2\theta^T X^T y + y^T y )$$
-$$ = X^T X \frac {\partial \theta^T \theta}{\partial\theta} - 2 X^T y \frac{\partial \theta^T}{\partial\theta} + \frac {\partial y^T y}{\partial\theta}$$
-Partial derivative $\frac {\partial x^2}{\partial x} = 2x$, $\frac {\partial kx^2}{\partial x} = kx$,
-$\frac {\partial Constact}{\partial x} = 0$
+$$\mathbf{\frac{\partial J(\theta)}{\partial \theta} = \frac{\partial}{\partial \theta} (\theta^T X^T X \theta  - 2\theta^T X^T y + y^T y )}$$
+$$\mathbf{ = X^T X \frac {\partial \theta^T \theta}{\partial\theta} - 2 X^T y \frac{\partial \theta^T}{\partial\theta} + \frac {\partial y^T y}{\partial\theta}}$$
+Partial derivative $\mathbf{\frac {\partial x^2}{\partial x} = 2x}$, $\mathbf{\frac {\partial kx^2}{\partial x} = kx}$,
+$\mathbf{\frac {\partial Constact}{\partial x} = 0}$
 
-$$\frac{\partial J(\theta)}{\partial\theta} = X^T X 2\theta - 2X^T y +0$$
-$$ 0 = 2X^T X \theta - 2X^T y$$
-$$ X^T X \theta = X^T $$
-$$ \theta = (X^TX)^{-1} X^Ty$$
+$$\mathbf{\frac{\partial J(\theta)}{\partial\theta} = X^T X 2\theta - 2X^T y +0}$$
+$$\mathbf{ 0 = 2X^T X \theta - 2X^T y}$$
+$$\mathbf{ X^T X \theta = X^T }$$
+$$\mathbf{ \theta = (X^TX)^{-1} X^Ty }$$
 this the normal equation for linear regression
 
 ## Exploratory data analysis
@@ -373,42 +355,30 @@ df.describe()
 ```python
 plt.figure(figsize=(12,4))
 sns.heatmap(df.isnull(),cbar=False,cmap='viridis',yticklabels=False)
-plt.title('Missing value in the dataset')
+plt.title('Missing value in the dataset');
 ```
 
+![alt]({{ site.url }}{{ site.baseurl }}/images/linear-regression/output_14_0.png)
 
 
 
-    Text(0.5,1,'Missing value in the dataset')
+There is no missing value in the data sex
 
-
-
-
-![png](output_14_1.png)
-
-
-There is no missing value in the data set
+### Plots
 
 
 ```python
 # correlation plot
 corr = df.corr()
-sns.heatmap(corr, cmap = 'Wistia', annot= True)
+sns.heatmap(corr, cmap = 'Wistia', annot= True);
 ```
 
 
+![alt]({{ site.url }}{{ site.baseurl }}/images/linear-regression/output_17_0.png)
 
-
-    <matplotlib.axes._subplots.AxesSubplot at 0x7ff4b52322b0>
-
-
-
-
-![png](output_16_1.png)
 
 
 Thier no correlation among valiables.
-### Plots
 
 
 ```python
@@ -421,11 +391,11 @@ ax.set_title('Distribution of insurance charges')
 ax=f.add_subplot(122)
 sns.distplot(np.log10(df['charges']),bins=40,color='b',ax=ax)
 ax.set_title('Distribution of insurance charges in $log$ sacle')
-ax.set_xscale('log')
+ax.set_xscale('log');
 ```
 
+![alt]({{ site.url }}{{ site.baseurl }}/images/linear-regression/output_19_0.png)
 
-![png](output_18_0.png)
 
 
 If we look at the left plot the charges varies from 1120 to 63500, the plot is right skewed. In right plot we will apply natural log, then plot approximately tends to normal. for further analysis we will apply log on target variable charges. 
@@ -439,18 +409,12 @@ ax.set_title('Violin plot of Charges vs sex')
 
 ax = f.add_subplot(122)
 sns.violinplot(x='smoker', y='charges',data=df,palette='magma',ax=ax)
-ax.set_title('Violin plot of Charges vs smoker')
+ax.set_title('Violin plot of Charges vs smoker');
 ```
 
 
+![alt]({{ site.url }}{{ site.baseurl }}/images/linear-regression/output_21_0.png)
 
-
-    Text(0.5,1,'Violin plot of Charges vs smoker')
-
-
-
-
-![png](output_20_1.png)
 
 
 From left plot the insurance charge for male and female is approximatley in same range,it is average around 5000 bucks. In right plot the insurance charge for smokers is much wide range compare to non smokers, the average charges for non smoker is approximately 5000 bucks. For smoker the minimum insurance charge is itself 5000 bucks.
@@ -458,19 +422,12 @@ From left plot the insurance charge for male and female is approximatley in same
 
 ```python
 plt.figure(figsize=(14,6))
-sns.boxplot(x='children', y='charges',hue='sex',data=df,palette='coolwarm')
-plt.title('Violin plot of charges vs children')
+sns.boxplot(x='children', y='charges',hue='sex',data=df,palette='rainbow')
+plt.title('Box plot of charges vs children');
 ```
 
+![alt]({{ site.url }}{{ site.baseurl }}/images/linear-regression/output_23_0.png)
 
-
-
-    Text(0.5,1,'Violin plot of charges vs children')
-
-
-
-
-![png](output_22_1.png)
 
 
 
@@ -556,19 +513,12 @@ df.groupby('children').agg(['mean','min','max'])['charges']
 
 ```python
 plt.figure(figsize=(14,6))
-sns.violinplot(x='region', y='charges',hue='sex',data=df,palette='coolwarm',split=True)
-plt.title('Violin plot of charges vs children')
+sns.violinplot(x='region', y='charges',hue='sex',data=df,palette='rainbow',split=True)
+plt.title('Violin plot of charges vs children');
 ```
 
+![alt]({{ site.url }}{{ site.baseurl }}/images/linear-regression/output_25_0.png)
 
-
-
-    Text(0.5,1,'Violin plot of charges vs children')
-
-
-
-
-![png](output_24_1.png)
 
 
 
@@ -585,7 +535,8 @@ plt.savefig('sc.png');
 ```
 
 
-![png](output_25_0.png)
+![alt]({{ site.url }}{{ site.baseurl }}/images/linear-regression/output_26_0.png)
+
 
 
 >From left plot the minimum age person is insured is 18 year. There is slabs in policy most of non smoker take $1^{st}$ and $2^{nd}$ slab, for smoker policy start at $2^{nd}$ and $3^{rd}$ slab.
@@ -611,7 +562,7 @@ By using *pandas get_dummies* function we can do all above three step in line of
 ```python
 # Dummy variable
 categorical_columns = ['sex','children', 'smoker', 'region']
-df_encode = pd.get_dummies(data = df, prefix = None, prefix_sep='_',
+df_encode = pd.get_dummies(data = df, prefix = 'OHE', prefix_sep='_',
                columns = categorical_columns,
                drop_first =True,
               dtype='int8')
@@ -632,19 +583,16 @@ print('\nNumber of rows and columns in the dataset:',df_encode.shape)
     Number of rows and columns in the dataset: (1338, 7)
     
     Columns in data frame after encoding dummy variable:
-     ['age' 'bmi' 'charges' 'sex_male' 'children_1' 'children_2' 'children_3'
-     'children_4' 'children_5' 'smoker_yes' 'region_northwest'
-     'region_southeast' 'region_southwest']
+     ['age' 'bmi' 'charges' 'OHE_male' 'OHE_1' 'OHE_2' 'OHE_3' 'OHE_4' 'OHE_5'
+     'OHE_yes' 'OHE_northwest' 'OHE_southeast' 'OHE_southwest']
     
     Number of rows and columns in the dataset: (1338, 13)
 
 
-The original categorical variable are remove and also one of the one hot encode varible column for perticular categorical variable is droped from the column. So we completed all three encoding step by using get dummies function.
-
 ### Box -Cox transformation
 A Box Cox transformation is a way to transform non-normal dependent variables into a normal shape. Normality is an important assumption for many statistical techniques; if your data isn’t normal, applying a Box-Cox means that you are able to run a broader number of tests. All that we need to perform this transformation is to find lambda value and apply the rule shown below to your variable.  
-$$ \begin {cases}\frac {y^\lambda - 1}{\lambda},& y_i\neg=0 \\
- log(y_i) & \lambda = 0 \end{cases}$$
+$$\mathbf{ \begin {cases}\frac {y^\lambda - 1}{\lambda},& y_i\neg=0 \\
+ log(y_i) & \lambda = 0 \end{cases}}$$
  The trick of Box-Cox transformation is to find lambda value, however in practice this is quite affordable. The following function returns the transformed variable, lambda value,confidence interval
 
 
@@ -670,35 +618,9 @@ ci,lam
 df_encode['charges'] = np.log(df_encode['charges'])
 ```
 
-## Polynomial feature
-
-
-```python
-### Polynomial feature
-#from sklearn.preprocessing import PolynomialFeatures
-#poly_feat = PolynomialFeatures(degree=5,include_bias=False)
-#t = poly_feat.fit_transform(df_encode[['age']])
-#t = pd.DataFrame(t,columns= poly_feat.get_feature_names())
-#t = t.iloc[:,1:]
-#df_encode = pd.concat([df_encode,t],axis=1)
-
-#df_encode['age**2'] = df_encode['age'] **2
-#df_encode['age**3'] = df_encode['age'] **3
-df_encode['age_smoker_yes'] = df_encode['age']* df_encode['smoker_yes']
-df_encode['age_sex_male'] = df_encode['age']* df_encode['sex_male']
-
-df_encode.shape
-```
-
-
-
-
-    (1338, 15)
-
-
+The original categorical variable are remove and also one of the one hot encode varible column for perticular categorical variable is droped from the column. So we completed all three encoding step by using get dummies function.
 
 ## Train Test split
-Just because a learning algorithm fits a training set well, that does not mean it is a good hypothesis. It could over fit and as result our prediction on the test set would be poor. The error of your hypothesis as measured on the data set with which you trained the parameters will be lower than error on any other dataset.
 
 
 ```python
@@ -710,7 +632,7 @@ X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.3,random_sta
 ```
 
 ## Model building
-In this step build model using our linear regression equation $\theta = (X^T X)^{-1} X^Ty$. In first step we need to add a feature $x_0 =1$ to our original data set. 
+In this step build model using our linear regression equation $\mathbf{\theta = (X^T X)^{-1} X^Ty}$. In first step we need to add a feature $\mathbf{x_0 =1}$ to our original data set. 
 
 
 ```python
@@ -775,113 +697,92 @@ parameter_df
       <th>0</th>
       <td>theta_0</td>
       <td>intersect:x_0=1</td>
-      <td>6.767122</td>
-      <td>6.767122</td>
+      <td>7.059171</td>
+      <td>7.059171</td>
     </tr>
     <tr>
       <th>1</th>
       <td>theta_1</td>
       <td>age</td>
-      <td>0.047182</td>
-      <td>0.047182</td>
+      <td>0.033134</td>
+      <td>0.033134</td>
     </tr>
     <tr>
       <th>2</th>
       <td>theta_2</td>
       <td>bmi</td>
-      <td>0.012213</td>
-      <td>0.012213</td>
+      <td>0.013517</td>
+      <td>0.013517</td>
     </tr>
     <tr>
       <th>3</th>
       <td>theta_3</td>
-      <td>sex_male</td>
-      <td>-0.265817</td>
-      <td>-0.265817</td>
+      <td>OHE_male</td>
+      <td>-0.067767</td>
+      <td>-0.067767</td>
     </tr>
     <tr>
       <th>4</th>
       <td>theta_4</td>
-      <td>children_1</td>
-      <td>0.136285</td>
-      <td>0.136285</td>
+      <td>OHE_1</td>
+      <td>0.149457</td>
+      <td>0.149457</td>
     </tr>
     <tr>
       <th>5</th>
       <td>theta_5</td>
-      <td>children_2</td>
-      <td>0.263954</td>
-      <td>0.263954</td>
+      <td>OHE_2</td>
+      <td>0.272919</td>
+      <td>0.272919</td>
     </tr>
     <tr>
       <th>6</th>
       <td>theta_6</td>
-      <td>children_3</td>
-      <td>0.239013</td>
-      <td>0.239013</td>
+      <td>OHE_3</td>
+      <td>0.244095</td>
+      <td>0.244095</td>
     </tr>
     <tr>
       <th>7</th>
       <td>theta_7</td>
-      <td>children_4</td>
-      <td>0.494028</td>
-      <td>0.494028</td>
+      <td>OHE_4</td>
+      <td>0.523339</td>
+      <td>0.523339</td>
     </tr>
     <tr>
       <th>8</th>
       <td>theta_8</td>
-      <td>children_5</td>
-      <td>0.477927</td>
-      <td>0.477927</td>
+      <td>OHE_5</td>
+      <td>0.466030</td>
+      <td>0.466030</td>
     </tr>
     <tr>
       <th>9</th>
       <td>theta_9</td>
-      <td>smoker_yes</td>
-      <td>2.783048</td>
-      <td>2.783048</td>
+      <td>OHE_yes</td>
+      <td>1.550481</td>
+      <td>1.550481</td>
     </tr>
     <tr>
       <th>10</th>
       <td>theta_10</td>
-      <td>region_northwest</td>
-      <td>-0.058535</td>
-      <td>-0.058535</td>
+      <td>OHE_northwest</td>
+      <td>-0.055845</td>
+      <td>-0.055845</td>
     </tr>
     <tr>
       <th>11</th>
       <td>theta_11</td>
-      <td>region_southeast</td>
-      <td>-0.137235</td>
-      <td>-0.137235</td>
+      <td>OHE_southeast</td>
+      <td>-0.146578</td>
+      <td>-0.146578</td>
     </tr>
     <tr>
       <th>12</th>
       <td>theta_12</td>
-      <td>region_southwest</td>
-      <td>-0.160339</td>
-      <td>-0.160339</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>theta_13</td>
-      <td>age**2</td>
-      <td>-0.000123</td>
-      <td>-0.000123</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>theta_14</td>
-      <td>age_smoker_yes</td>
-      <td>-0.031380</td>
-      <td>-0.031380</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>theta_15</td>
-      <td>age_sex_male</td>
-      <td>0.005123</td>
-      <td>0.005123</td>
+      <td>OHE_southwest</td>
+      <td>-0.133508</td>
+      <td>-0.133508</td>
     </tr>
   </tbody>
 </table>
@@ -893,16 +794,16 @@ The parameter obtained from both the model are same.So we succefull build our mo
 
 ## Model evaluation
 We will predict value for target variable by using our model parameter for test data set. Then compare the predicted value with actual valu in test set. We compute **Mean Square Error** using formula 
-$$J(\theta) = \frac{1}{m} \sum_{i=1}^{m}(\hat{y}_i - y_i)^2$$
+$$\mathbf{ J(\theta) = \frac{1}{m} \sum_{i=1}^{m}(\hat{y}_i - y_i)^2}$$
 
-$R^2$ is statistical measure of how close data are to the fitted regression line. $R^2$ is always between 0 to 100%. 0% indicated that model explains none of the variability of the response data around it's mean. 100% indicated that model explains all the variablity of the response data around the mean.
+$\mathbf{R^2}$ is statistical measure of how close data are to the fitted regression line. $\mathbf{R^2}$ is always between 0 to 100%. 0% indicated that model explains none of the variability of the response data around it's mean. 100% indicated that model explains all the variablity of the response data around the mean.
 
-$$R^2 = 1 - \frac{SSE}{SST}$$
+$$\mathbf{R^2 = 1 - \frac{SSE}{SST}}$$
 **SSE = Sum of Square Error**  
 **SST = Sum of Square Total**  
-$$SSE = \sum_{i=1}^{m}(\hat{y}_i - y_i)^2$$
-$$SST = \sum_{i=1}^{m}(y_i - \bar{y}_i)^2$$
-Here $\hat{y}$ is predicted value and $\bar{y}$ is mean value of $y$.
+$$\mathbf{SSE = \sum_{i=1}^{m}(\hat{y}_i - y_i)^2}$$
+$$\mathbf{SST = \sum_{i=1}^{m}(y_i - \bar{y}_i)^2}$$
+Here $\mathbf{\hat{y}}$ is predicted value and $\mathbf{\bar{y}}$ is mean value of $\mathbf{y}$.
 
 
 ```python
@@ -920,8 +821,8 @@ print('The Mean Square Error(MSE) or J(theta) is: ',J_mse)
 print('R square obtain for normal equation method is :',R_square)
 ```
 
-    The Mean Square Error(MSE) or J(theta) is:  0.155323465604
-    R square obtain for normal equation method is : 0.817197889059
+    The Mean Square Error(MSE) or J(theta) is:  0.18729622322981862
+    R square obtain for normal equation method is : 0.7795687545055323
 
 
 
@@ -939,155 +840,38 @@ print('The Mean Square Error(MSE) or J(theta) is: ',J_mse_sk)
 print('R square obtain for scikit learn library is :',R_square_sk)
 ```
 
-    The Mean Square Error(MSE) or J(theta) is:  0.155323465604
-    R square obtain for scikit learn library is : 0.817197889059
+    The Mean Square Error(MSE) or J(theta) is:  0.18729622322981884
+    R square obtain for scikit learn library is : 0.779568754505532
 
 
 The model returns $R^2$ value of 77.95%, so it fit our data test very well, but still we can imporve the the performance of by diffirent technique. Please make a note that we have transformer out variable by applying  natural log. When we put model into production antilog is applied to the equation.
 
-## Backward elimination
-In backward elimination we start with all the feature and remove the least significant feature at each iteration which improves the performance of the model. We repeate this until no improvement is observed on removal of features.
-
-
-```python
-# Backward elimination
-import statsmodels.api as sm
-X_train_0 = sm.add_constant(X_train)
-X_test_0 = sm.add_constant(X_test)
-ols = sm.OLS(endog=y_train, exog= X_train_0).fit()
-print(ols.summary())
-```
-
-                                OLS Regression Results                            
-    ==============================================================================
-    Dep. Variable:                charges   R-squared:                       0.805
-    Model:                            OLS   Adj. R-squared:                  0.802
-    Method:                 Least Squares   F-statistic:                     271.0
-    Date:                Thu, 06 Sep 2018   Prob (F-statistic):          9.98e-315
-    Time:                        11:40:16   Log-Likelihood:                -482.19
-    No. Observations:                 936   AIC:                             994.4
-    Df Residuals:                     921   BIC:                             1067.
-    Df Model:                          14                                         
-    Covariance Type:            nonrobust                                         
-    ====================================================================================
-                           coef    std err          t      P>|t|      [0.025      0.975]
-    ------------------------------------------------------------------------------------
-    const                6.9339      0.089     77.741      0.000       6.759       7.109
-    age                  0.0374      0.001     26.165      0.000       0.035       0.040
-    bmi                  0.0120      0.002      5.340      0.000       0.008       0.016
-    sex_male            -0.2677      0.080     -3.348      0.001      -0.425      -0.111
-    children_1           0.1526      0.034      4.485      0.000       0.086       0.219
-    children_2           0.2803      0.038      7.330      0.000       0.205       0.355
-    children_3           0.2546      0.045      5.720      0.000       0.167       0.342
-    children_4           0.5062      0.104      4.859      0.000       0.302       0.711
-    children_5           0.4984      0.108      4.613      0.000       0.286       0.710
-    smoker_yes           2.7842      0.096     28.948      0.000       2.595       2.973
-    region_northwest    -0.0586      0.038     -1.541      0.124      -0.133       0.016
-    region_southeast    -0.1370      0.038     -3.597      0.000      -0.212      -0.062
-    region_southwest    -0.1602      0.039     -4.119      0.000      -0.237      -0.084
-    age_smoker_yes      -0.0314      0.002    -13.668      0.000      -0.036      -0.027
-    age_sex_male         0.0052      0.002      2.720      0.007       0.001       0.009
-    ==============================================================================
-    Omnibus:                      531.247   Durbin-Watson:                   2.017
-    Prob(Omnibus):                  0.000   Jarque-Bera (JB):             3959.551
-    Skew:                           2.561   Prob(JB):                         0.00
-    Kurtosis:                      11.677   Cond. No.                         476.
-    ==============================================================================
-    
-    Warnings:
-    [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
-
-
-The p-value for region_northwest is above significance level $\alpha$ =0.05. so we remove this variable.
-
-
-```python
-# Backward elimination
-# Step 2
-import statsmodels.api as sm
-X_train_1 = X_train.drop('region_northwest',axis=1)
-X_test_1 = X_test.drop('region_northwest',axis=1)
-X_train_2 = sm.add_constant(X_train_1)
-X_test_2 = sm.add_constant(X_test_1)
-ols = sm.OLS(endog=y_train, exog= X_train_2).fit()
-print(ols.summary())
-```
-
-                                OLS Regression Results                            
-    ==============================================================================
-    Dep. Variable:                charges   R-squared:                       0.804
-    Model:                            OLS   Adj. R-squared:                  0.801
-    Method:                 Least Squares   F-statistic:                     291.2
-    Date:                Thu, 06 Sep 2018   Prob (F-statistic):          1.87e-315
-    Time:                        11:40:25   Log-Likelihood:                -483.39
-    No. Observations:                 936   AIC:                             994.8
-    Df Residuals:                     922   BIC:                             1063.
-    Df Model:                          13                                         
-    Covariance Type:            nonrobust                                         
-    ====================================================================================
-                           coef    std err          t      P>|t|      [0.025      0.975]
-    ------------------------------------------------------------------------------------
-    const                6.9028      0.087     79.395      0.000       6.732       7.073
-    age                  0.0374      0.001     26.153      0.000       0.035       0.040
-    bmi                  0.0121      0.002      5.371      0.000       0.008       0.017
-    sex_male            -0.2661      0.080     -3.326      0.001      -0.423      -0.109
-    children_1           0.1511      0.034      4.441      0.000       0.084       0.218
-    children_2           0.2780      0.038      7.271      0.000       0.203       0.353
-    children_3           0.2526      0.045      5.673      0.000       0.165       0.340
-    children_4           0.5089      0.104      4.881      0.000       0.304       0.713
-    children_5           0.4998      0.108      4.623      0.000       0.288       0.712
-    smoker_yes           2.7852      0.096     28.937      0.000       2.596       2.974
-    region_southeast    -0.1086      0.033     -3.256      0.001      -0.174      -0.043
-    region_southwest    -0.1315      0.034     -3.849      0.000      -0.198      -0.064
-    age_smoker_yes      -0.0314      0.002    -13.652      0.000      -0.036      -0.027
-    age_sex_male         0.0051      0.002      2.702      0.007       0.001       0.009
-    ==============================================================================
-    Omnibus:                      529.594   Durbin-Watson:                   2.022
-    Prob(Omnibus):                  0.000   Jarque-Bera (JB):             3912.168
-    Skew:                           2.555   Prob(JB):                         0.00
-    Kurtosis:                      11.614   Cond. No.                         475.
-    ==============================================================================
-    
-    Warnings:
-    [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
-
-
 ## Model Validation
-In oreder to validated model we need to check few assumption of linear regression model. The common assumption for *Linear Regression* model are following
+In order to validated model we need to check few assumption of linear regression model. The common assumption for *Linear Regression* model are following
 1. Linear Relationship: In linear regression the relationship between the dependent and independent variable to be *linear*. This can be checked by scatter ploting Actual value Vs Predicted value
 2. The residual error plot should be *normally* distributed.
 3. The *mean* of *residual error* should be 0 or close to 0 as much as possible
 4. The linear regression require all variables to be multivariate normal. This assumption can best checked with Q-Q plot.
-5. Linear regession assumes that there is little or no *Multicollinearity in the data. Multicollinearity occurs when the independent variables are too highly correlated with each other. The variance inflation factor *VIF* identifies correlation between independent variables and strength of that correlation. $VIF = \frac {1}{1-R^2}$, If VIF >1 & VIF <5 moderate correlation, VIF < 5 critical level of multicollinearity.
+5. Linear regession assumes that there is little or no *Multicollinearity in the data. Multicollinearity occurs when the independent variables are too highly correlated with each other. The variance inflation factor *VIF* identifies correlation between independent variables and strength of that correlation. $\mathbf{VIF = \frac {1}{1-R^2}}$, If VIF >1 & VIF <5 moderate correlation, VIF < 5 critical level of multicollinearity.
 6. Homoscedasticity: The data are homoscedastic meaning the residuals are equal across the regression line. We can look at residual Vs fitted value scatter plot. If heteroscedastic plot would exhibit a funnel shape pattern.
-
-
-```python
-# Prediction for ols model
-y_pred_ols = ols.predict(X_test_2)
-```
 
 
 ```python
 # Check for Linearity
 f = plt.figure(figsize=(14,5))
 ax = f.add_subplot(121)
-sns.scatterplot(y_test,y_pred_ols,ax=ax,color=['r','g'])
-plt.title('Check for Linearity')
-plt.xlabel('Actual value')
-plt.ylabel('Predicted value')
+sns.scatterplot(y_test,y_pred_sk,ax=ax,color='r')
+ax.set_title('Check for Linearity:\n Actual Vs Predicted value')
 
 # Check for Residual normality & mean
 ax = f.add_subplot(122)
-sns.distplot((y_test - y_pred_ols),ax=ax,color='b')
-plt.axvline((y_test - y_pred_ols).mean(),color='k',linestyle='--')
-plt.title('Check for Residual normality & mean')
-plt.xlabel('Residual eror')
-plt.ylabel('$p(x)$');
+sns.distplot((y_test - y_pred_sk),ax=ax,color='b')
+ax.axvline((y_test - y_pred_sk).mean(),color='k',linestyle='--')
+ax.set_title('Check for Residual normality & mean: \n Residual eror');
 ```
 
+![alt]({{ site.url }}{{ site.baseurl }}/images/linear-regression/output_47_0.png)
 
-![png](output_53_0.png)
 
 
 
@@ -1096,40 +880,36 @@ plt.ylabel('$p(x)$');
 # Quantile-Quantile plot 
 f,ax = plt.subplots(1,2,figsize=(14,6))
 import scipy as sp
-_,(_,_,r)= sp.stats.probplot((y_test - y_pred_ols),fit=True,plot=ax[0])
+_,(_,_,r)= sp.stats.probplot((y_test - y_pred_sk),fit=True,plot=ax[0])
 ax[0].set_title('Check for Multivariate Normality: \nQ-Q Plot')
 
 #Check for Homoscedasticity
-sns.scatterplot(y = (y_test - y_pred_ols), x= y_pred_ols, ax = ax[1],color=['r','g']) 
-ax[1].set_title('Check for Homoscedasticity')
-plt.xlabel('Predicted value')
-plt.ylabel('Residual error');
+sns.scatterplot(y = (y_test - y_pred_sk), x= y_pred_sk, ax = ax[1],color='r') 
+ax[1].set_title('Check for Homoscedasticity: \nResidual Vs Predicted');
 ```
 
+![alt]({{ site.url }}{{ site.baseurl }}/images/linear-regression/output_48_0.png)
 
-![png](output_54_0.png)
 
 
 
 ```python
 # Check for Multicollinearity
 #Variance Inflation Factor
-VIF = 1/(1- ols.rsquared)
+VIF = 1/(1- R_square_sk)
 VIF
 ```
 
 
 
 
-    5.1057746936298756
+    4.5365619459111395
 
 
 
 The model assumption linear regression as follows
-1. In our model  the actual vs predicted plot is not linear curve, so linear assumption fails
+1. In our model  the actual vs predicted plot is curve so linear assumption fails
 2. The residual mean is zero and residual error plot right skewed
 3. Q-Q plot shows as value log value greater than 1.5 trends to increase
 4. The plot is exhibit heteroscedastic, error will insease after certian point.
-5. Variance inflation factor value is greater than 5, so bit of multicollearity.
-
-# Thank you for visiting
+5. Variance inflation factor value is less than 5, so no multicollearity.
