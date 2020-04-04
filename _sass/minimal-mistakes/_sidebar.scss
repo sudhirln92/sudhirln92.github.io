@@ -73,6 +73,10 @@
 
 .sidebar__right {
   margin-bottom: 1em;
+  display: table-cell;
+  vertical-align: top;
+  width: 36px;
+  height: 36px;
 
   @include breakpoint($large) {
     position: absolute;
