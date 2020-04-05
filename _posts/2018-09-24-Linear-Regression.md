@@ -11,7 +11,7 @@ We will build a Linear regression model for Medical cost dataset. The dataset co
 # Definition & Working principle
 Let's build model using **Linear regression**.
 
-Linear regression is a **supervised learining** algorithm used when target / dependent variable  **continues** real number. It establishes relationship between dependent variable $y$ and one or more independent variable $x$ using best fit line.   It work on the principle of ordinary least square $(OLS)$ / Mean square errror $(MSE)$. In statistics ols is method to estimated unkown parameter of linear regression function, it's goal is to minimize sum of square difference between observed dependent variable in the given data set and those predicted by linear regression fuction. 
+Linear regression is a **supervised learining** algorithm used when target / dependent variable  **continues** real number. It establishes relationship between dependent variable $y$ and one or more independent variable $x$ using best fit line.   It work on the principle of ordinary least square $(OLS)$ / Mean square errror $(MSE)$. In statistics $OLS$ is method to estimated unkown parameter of linear regression function, it's goal is to minimize sum of square difference between observed dependent variable in the given data set and those predicted by linear regression fuction. 
 
 ## Hypothesis representation
 
@@ -25,6 +25,7 @@ $\mathbf{\theta_0,\theta_1}$ are parameter of hypothesis.This is equation for **
 For **Multiple Linear regression** more than one independent variable exit then we will use $\mathbf{x_{ij}}$ to denote indepedent variable and $\mathbf{y_{i}}$ to denote dependent variable. We have $\mathbf{n}$ independent variable then $\mathbf{j=1,2,3 ..... n}$. The hypothesis function represented as
 
 $$\mathbf{h_\theta(x_{i}) = \theta_0 + \theta_1x_{i1} + \theta_2 x_{i2} + ..... \theta_j x_{ij} ...... \theta_n  x_{mn} }$$
+
 $\mathbf{\theta_0,\theta_1,....\theta_j....\theta_n }$ are parameter of hypothesis,
 $\mathbf{m}$ Number of training exaples,
 $\mathbf{n}$ Number of independent variable,
@@ -848,12 +849,12 @@ The model returns $R^2$ value of 77.95%, so it fit our data test very well, but 
 
 ## Model Validation
 In order to validated model we need to check few assumption of linear regression model. The common assumption for *Linear Regression* model are following
-1. Linear Relationship: In linear regression the relationship between the dependent and independent variable to be *linear*. This can be checked by scatter ploting Actual value Vs Predicted value
-2. The residual error plot should be *normally* distributed.
-3. The *mean* of *residual error* should be 0 or close to 0 as much as possible
-4. The linear regression require all variables to be multivariate normal. This assumption can best checked with Q-Q plot.
-5. Linear regession assumes that there is little or no *Multicollinearity in the data. Multicollinearity occurs when the independent variables are too highly correlated with each other. The variance inflation factor *VIF* identifies correlation between independent variables and strength of that correlation. $\mathbf{VIF = \frac {1}{1-R^2}}$, If VIF >1 & VIF <5 moderate correlation, VIF < 5 critical level of multicollinearity.
-6. Homoscedasticity: The data are homoscedastic meaning the residuals are equal across the regression line. We can look at residual Vs fitted value scatter plot. If heteroscedastic plot would exhibit a funnel shape pattern.
+1. Linear Relationship: In linear regression the relationship between the dependent and independent variable to be **linear**. This can be checked by scatter ploting Actual value Vs Predicted value
+2. The residual error plot should be **normally** distributed.
+3. The **mean** of **residual error** should be 0 or close to 0 as much as possible
+4. The linear regression require all variables to be **multivariate normal**. This assumption can best checked with Q-Q plot.
+5. Linear regession assumes that there is little or no **Multicollinearity** in the data. Multicollinearity occurs when the independent variables are too highly correlated with each other. The variance inflation factor *VIF* identifies correlation between independent variables and strength of that correlation. $\mathbf{VIF = \frac {1}{1-R^2}}$, If VIF >1 & VIF <5 moderate correlation, VIF < 5 critical level of multicollinearity.
+6. **Homoscedasticity**: The data are homoscedastic meaning the residuals are equal across the regression line. We can look at residual Vs fitted value scatter plot. If heteroscedastic plot would exhibit a funnel shape pattern.
 
 
 ```python
