@@ -95,7 +95,7 @@ analytics:
 author:
   name             : "Sudhir Kumar"
   avatar           : "/images/bio_pic.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Machine Learning Engineer, Python, R, SQL"
+  bio              : "Data Science, Machine Learning, Python, R, SQL"
   location         : "Bengaluru"
   email            :
   links:
