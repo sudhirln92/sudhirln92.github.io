@@ -1,5 +1,5 @@
 ---
-title: "Linear Regression"
+title: "Reduce Memory Usage"
 date: 2023-04-16
 mathjax: true
 tags: [Data Science, Pandas, Optimization]
