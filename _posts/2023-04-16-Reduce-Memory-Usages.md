@@ -1,6 +1,14 @@
+---
+title: "Linear Regression"
+date: 2023-04-16
+mathjax: true
+tags: [Data Science, Pandas, Optimization]
+excerpt: "Data Science, Pandas, Optimization"
+---
+
 # Reduce Memory Usage 
     
-To optimize the memory usage of a Pandas DataFrame object, it is important to convert different data types to their proper format. For instance, a column such as ro_code in a DataFrame may have a default data type of int64, but the int32 data type is often sufficient to store data without altering the values. By converting this column to int32, we can free up RAM space and improve the memory efficiency of the DataFrame.
+To optimize the memory usage of a Pandas DataFrame object, it is important to convert different data types to their proper format. For instance, a column such as close in a DataFrame may have a default data type of float64, but the float32 data type is often sufficient to store data without altering the values. By converting this column to int32, we can free up RAM space and improve the memory efficiency of the DataFrame.
 
 ## Import library
 
