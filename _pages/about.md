@@ -43,8 +43,8 @@ Experienced Data Scientist with 5.9 years in developing robust machine learning 
 | Certifications | Description| Institute | Year|
 | ------ | ------ | ------ |----- |
 | AWS Cloud Practioner Essentials | AWS Cloud Basic Training | AWS | 2023 |
-| AWS CLoud Lambda and ECS | Lambda ans ECS Training | Atos| 2023 |
-| AWS Cloud Practitioner Preparation | AWS Cloud Practitioner Training | Atos | 2024 |
+| AWS Cloud Services - Functional Programming using Lambda and ECS | Lambda ans ECS Training | Atos| 2023 |
+| AWS Cloud Practitioner Certification Preparation | AWS Cloud Practitioner Training | Atos | 2024 |
 | Security Essentials on AWS | AWS Training | AWS | 2023 |
 | Data Analysis on AWS | AWS Training | AWS | 2023 |
 | Machine Learning on AWS | Sagemaker Training | AWS | 2023 |
