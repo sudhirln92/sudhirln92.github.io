@@ -41,11 +41,6 @@ Experienced Data Scientist with 5.9 years in developing robust machine learning 
 # Internal Certificates ✨
 
 | Certifications | Description| Institute | Year|
-| ------ | ------ | ------ | ------ |
-| AWS Cloud Practioner Essentials | AWS Cloud Basic Training |AWS |  2023 |
-
-
-| Certifications | Description| Institute | Year|
 | ------ | ------ | ------ |----- |
 | AWS Cloud Practioner Essentials | AWS Cloud Basic Training | AWS | 2023 |
 | AWS CLoud Lambda and ECS | Lambda ans ECS Training | Atos| 2023 |
